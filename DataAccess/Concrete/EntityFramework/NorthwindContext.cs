@@ -13,11 +13,13 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=GÖKAYGÜLER\SQLEXPRESS;database=Northwind;integrated security=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-KR9KOO2\MYMSSQLSERVER;database=Northwind;integrated security=true");
         }
     }
-}
+}   
