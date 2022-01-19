@@ -9,9 +9,14 @@ namespace ConsoleUI
 {
     class Program
     {
+        static object[] nesne = { "a", 2, true, 1.6 };
         static void Main(string[] args)
         {
-            ProductTest();
+            foreach (var item in nesne)
+            {
+                Console.Write(item);
+            }
+            //ProductTest();
             Console.ReadLine();
         }
         private static void CategoryTest()
@@ -26,10 +31,19 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EFProductDal());
-            foreach (var product in productManager.GetProductDetails())
+            var result = productManager.GetProductDetails();
+            if (result.Success)
             {
-                Console.WriteLine(product.ProductName + "/" +product.CategoryName );
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+         
         }
     }
 }
